@@ -1,1 +1,0 @@
-{"version":3,"sources":["view/NotFound/NotFound.jsx"],"names":["NotFoundView","style","textAlign"],"mappings":"oMAAe,SAASA,IACtB,OAAO,oBAAIC,MAAO,CAAEC,UAAW,UAAxB","file":"static/js/NotFoundView.49930374.chunk.js","sourcesContent":["export default function NotFoundView() {\r\n  return <h1 style={{ textAlign: 'center' }}>404 Страница не найдена</h1>;\r\n}\r\n"],"sourceRoot":""}
