@@ -1,8 +1,9 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { addBackToTop } from 'vanilla-back-to-top';
 
 import Container from './components/Container';
 import Loader from './components/Loader';
@@ -25,6 +26,13 @@ const MoviesDetailsPage = lazy(() =>
 );
 
 export default function App() {
+  useEffect(() => {
+    addBackToTop({
+      backgroundColor: '#f7de03',
+      textColor: 'black',
+    });
+  }, []);
+
   return (
     <Container>
       <AppBar />

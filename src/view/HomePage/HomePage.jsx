@@ -21,9 +21,6 @@ export default function HomePage() {
 
   const page = new URLSearchParams(location.search).get('page') ?? 1;
 
-  const onHandlePage = (event, page) => {
-    history.push({ ...location, search: `page=${page}` });
-  };
 
   useEffect(() => {
     setStatus(Status.PENDING);
@@ -39,6 +36,10 @@ export default function HomePage() {
         setStatus(Status.REJECTED);
       });
   }, [page]);
+
+    const onHandlePage = (event, page) => {
+      history.push({ ...location, search: `page=${page}` });
+    };
 
   if (status === Status.PENDING) {
     return <Loader />;
