@@ -31,7 +31,7 @@ export default function HomePage() {
         setStatus(Status.RESOLVED);
       })
       // .then(setStatus(Status.RESOLVED))
-      .catch(err => {
+      .catch(error => {
         setError('Something went wrong. Try again.');
         setStatus(Status.REJECTED);
       });
