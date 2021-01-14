@@ -7,7 +7,7 @@ function LoaderSpinner() {
     <div className={style.overlay}>
       <Loader
         type="ThreeDots"
-        color="#00BFFF"
+        color="rgba(255,255,51,0.2)"
         height={100}
         width={100}
         timeout={3000} //3 secs

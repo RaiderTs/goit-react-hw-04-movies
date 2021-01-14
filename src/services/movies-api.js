@@ -17,20 +17,24 @@ export function fetchTrending(page) {
   );
 }
 // поиск кинофильма по ключевому слову
-export function fetchSearchMovies(query) {
+export function fetchSearchMovies(query, page) {
   return apiService(
-    `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`,
+    `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&page=${page}`,
   );
 }
 //  страница с детальной информацией о кинофильме
-export function fetchMovieDetails(id) {
-  return apiService(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`);
+export function fetchMovieDetails(movieId) {
+  return apiService(`${BASE_URL}/movie/${movieId}?api_key=${API_KEY}`);
 }
 // Информация об актерском составе
-export function fetchMovieCast(id) {
-  return apiService(`${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}`);
+// export function fetchMovieCast(id) {
+//   return apiService(`${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}`);
+// }
+export function fetchMovieCast(movieId) {
+  return apiService(`${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}`);
 }
+
 //  информация об обзорах
-export function fetchMovieReviews(id) {
-  return apiService(`${BASE_URL}/movie/${id}/reviews?api_key=${API_KEY}`);
+export function fetchMovieReviews(movieId, page) {
+  return apiService(`${BASE_URL}/movie/${movieId}/reviews?api_key=${API_KEY}`);
 }

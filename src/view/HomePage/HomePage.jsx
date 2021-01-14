@@ -1,16 +1,19 @@
 import { useState, useEffect } from 'react';
-import { Link, useRouteMatch, useLocation, useHistory } from 'react-router-dom'; 
-import { fetchTrending, URL } from '../../services/movies-api'; 
+import { Link, useLocation, useHistory } from 'react-router-dom';
+import { fetchTrending, URL } from '../../services/movies-api';
 import { Pagination } from '@material-ui/lab';
-import Status from '../../services/status'; 
+import slugify from 'slugify';
+import Status from '../../services/status';
 import useStyles from '../../services/StylesPagination';
 
-import Loader from '../../components/Loader'; 
+import Loader from '../../components/Loader';
 import ErrorMovies from '../../components/ErrorMovies'; // Для ошибки
-import style from './HomePage.module.css'; 
+import style from './HomePage.module.css';
+
+const makeSlug = string => slugify(string, { lower: true });
 
 export default function HomePage() {
-  const { url } = useRouteMatch(); 
+  // const { url } = useRouteMatch();
   const [films, setFilms] = useState([]);
   const [error, setError] = useState({});
   const [status, setStatus] = useState(Status.PENDING);
@@ -20,7 +23,6 @@ export default function HomePage() {
   const classes = useStyles();
 
   const page = new URLSearchParams(location.search).get('page') ?? 1;
-
 
   useEffect(() => {
     setStatus(Status.PENDING);
@@ -37,9 +39,9 @@ export default function HomePage() {
       });
   }, [page]);
 
-    const onHandlePage = (event, page) => {
-      history.push({ ...location, search: `page=${page}` });
-    };
+  const onHandlePage = (event, page) => {
+    history.push({ ...location, search: `page=${page}` });
+  };
 
   if (status === Status.PENDING) {
     return <Loader />;
@@ -54,14 +56,17 @@ export default function HomePage() {
       <>
         {films && (
           <>
-            
             <h2 className={style.title}>Trending today</h2>
             <ul className={style.list}>
-              
               {films.map(film => (
                 <li key={film.id} className={style.item}>
                   <Link
-                    to={`${url}movies/${film.id}`} 
+                    to={{
+                      pathname: `movies/${makeSlug(
+                        `${film.title} ${film.id}`,
+                      )}`,
+                      state: { from: location },
+                    }}
                     className={style.link}
                   >
                     <img
@@ -71,7 +76,7 @@ export default function HomePage() {
                       width="300"
                       height="450"
                     />
-               
+
                     <p className={style.filmTitle}>{film.title}</p>
                   </Link>
                 </li>
