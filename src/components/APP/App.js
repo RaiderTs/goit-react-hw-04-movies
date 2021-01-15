@@ -5,24 +5,24 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addBackToTop } from 'vanilla-back-to-top';
 
-import Container from './components/Container';
-import Loader from './components/Loader';
-import AppBar from './components/AppBar';
+import Container from '../Container';
+import Loader from '../Loader';
+import AppBar from '../AppBar';
 
 const HomePage = lazy(() =>
-  import('./view/HomePage' /* webpackChunkName: 'HomePage' */),
+  import('../../view/HomePage' /* webpackChunkName: 'HomePage' */),
 );
 
 const MoviesPage = lazy(() =>
-  import('./view/MoviesPage' /* webpackChunkName: "MoviesPage" */),
+  import('../../view/MoviesPage' /* webpackChunkName: "MoviesPage" */),
 );
 
 const NotFoundView = lazy(() =>
-  import('./components/NotFound' /* webpackChunkName: "NotFoundView" */),
+  import('../NotFound' /* webpackChunkName: "NotFoundView" */),
 );
 
 const MoviesDetailsPage = lazy(() =>
-  import('./view/MovieDetailsPage' /* webpackChunkName: "MovieDetailsPage" */),
+  import('../../view/MovieDetailsPage' /* webpackChunkName: "MovieDetailsPage" */),
 );
 
 export default function App() {
